@@ -1,25 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+
+import { Content } from './components/content/content/Content';
+
+
 
 function App() {
+
+
+ 
+  // const api = setup({
+  //   baseURL: "https://pokeapi.co/api/v2/",
+  //   cache: {
+  //     maxAge: 15 * 60 * 1000
+  //   }
+  // });
+
+  // api.get('pokemon/1').then((a: AxiosResponse) => { console.log(a.data["species"]) });
+
+
+
+
+  // for (let index = 1; index <= 152; index++) {
+
+  //   // axios.get(`https://pokeapi.co/api/v2/pokemon/${index}`).then((a: AxiosResponse) => { console.log(a.data["species"]) });
+  //   // const element = array[index];
+
+  // }
+
+  // axios.get('https://pokeapi.co/api/v2/pokemon/ditto').then((a: AxiosResponse) => { console.log(a.data) });
+
+  // console.log('teste');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Content />
+    </>
+
   );
 }
 
