@@ -1,0 +1,19 @@
+.button {
+  background-color: transparent;
+  width: 15vw;
+  height: 50px;
+
+  color: white;
+  font-size: 0.8em;
+
+  border: none;
+  
+}
+
+.button:hover {
+  background-color: #00000010;
+}
+
+.button:active {
+  background-color: #00000020;
+}

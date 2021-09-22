@@ -1,14 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Content } from './components/content/Content';
 
 
-import { Content } from './components/content/content/Content';
+import { Menu } from './components/menu/Menu/index';
 
+import './styles.css';
 
 
 function App() {
 
+  const [selectedContent, setSelectedContent] = useState(0);
 
- 
+  function selectHomeContent() {
+    console.log(selectedContent);
+    setSelectedContent(0);
+    console.log(selectedContent);
+  }
+
+  function selectPokedexContent() {
+    console.log(selectedContent);
+    setSelectedContent(1);
+    console.log(selectedContent);
+  }
+
+  function selectAboutContent() {
+    console.log(selectedContent);
+    setSelectedContent(2);
+    console.log(selectedContent);
+  }
+
+  function selectPokemonContent() {
+    console.log(selectedContent);
+    setSelectedContent(3);
+    console.log(selectedContent);
+  }
+
   // const api = setup({
   //   baseURL: "https://pokeapi.co/api/v2/",
   //   cache: {
@@ -33,10 +59,10 @@ function App() {
   // console.log('teste');
 
   return (
-    <>
-      <Content />
-    </>
-
+    <div>
+      <Menu selectHomeContent={selectHomeContent} selectPokedexContent={selectPokedexContent} selectAboutContent={selectAboutContent} />
+      <Content selectedContent={selectedContent} selectPokemonContent={selectPokemonContent} />
+    </div>
   );
 }
 

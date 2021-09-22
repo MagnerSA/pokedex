@@ -1,0 +1,7 @@
+.pokemonContent {
+  background-color: rgb(104, 120, 163);
+  height: 100vh;
+  width: 85vw;
+  position: fixed;
+  left: 15vw;
+}

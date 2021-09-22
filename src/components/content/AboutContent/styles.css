@@ -1,0 +1,7 @@
+.aboutContent {
+  background-color: rgb(121, 163, 104);
+  height: 100vh;
+  width: 85vw;
+  position: fixed;
+  left: 15vw;
+}
