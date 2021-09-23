@@ -60,7 +60,7 @@ function App() {
 
   return (
     <div>
-      <Menu selectHomeContent={selectHomeContent} selectPokedexContent={selectPokedexContent} selectAboutContent={selectAboutContent} />
+      <Menu selectedContent= {selectedContent} selectHomeContent={selectHomeContent} selectPokedexContent={selectPokedexContent} selectAboutContent={selectAboutContent} />
       <Content selectedContent={selectedContent} selectPokemonContent={selectPokemonContent} />
     </div>
   );

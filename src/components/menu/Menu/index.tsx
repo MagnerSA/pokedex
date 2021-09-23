@@ -6,16 +6,17 @@ type Props = {
   selectHomeContent: () => void,
   selectPokedexContent: () => void,
   selectAboutContent: () => void,
+  selectedContent: number,
 };
 export const Menu = (props: Props) => {
   return (
     <div className="menu">
       <br />
-      <MenuButton onClick={props.selectHomeContent}>HOME</MenuButton>
+      <MenuButton isActive={props.selectedContent === 0} onClick={props.selectHomeContent}>HOME</MenuButton>
       <br />
-      <MenuButton onClick={props.selectPokedexContent}>POKÉDEX</MenuButton>
+      <MenuButton isActive={props.selectedContent === 1 || props.selectedContent == 4} onClick={props.selectPokedexContent}>POKÉDEX</MenuButton>
       <br />
-      <MenuButton onClick={props.selectAboutContent}>ABOUT</MenuButton>
+      <MenuButton isActive={props.selectedContent === 2} onClick={props.selectAboutContent}>ABOUT</MenuButton>
     </div>
   );
 };
