@@ -1,39 +1,36 @@
 import React, { useState } from 'react';
-import { Content } from './components/content/Content';
+import { Provider } from 'react-redux';
+import Content from './components/content/Content';
+import Menu from './components/menu/Menu';
+
+// import { Content } from './components/content/Content';
+// import { Menu } from './components/menu/Menu/index';
 
 
-import { Menu } from './components/menu/Menu/index';
 
+import store from './store';
 import './styles.css';
 
 
 function App() {
 
-  const [selectedContent, setSelectedContent] = useState(0);
+  // const [selectedContent, setSelectedContent] = useState(0);
 
-  function selectHomeContent() {
-    console.log(selectedContent);
-    setSelectedContent(0);
-    console.log(selectedContent);
-  }
+  // function selectHomeContent() {
+  //   setSelectedContent(0);
+  // }
 
-  function selectPokedexContent() {
-    console.log(selectedContent);
-    setSelectedContent(1);
-    console.log(selectedContent);
-  }
+  // function selectPokedexContent() {
+  //   setSelectedContent(1);
+  // }
 
-  function selectAboutContent() {
-    console.log(selectedContent);
-    setSelectedContent(2);
-    console.log(selectedContent);
-  }
+  // function selectAboutContent() {
+  //   setSelectedContent(2);
+  // }
 
-  function selectPokemonContent() {
-    console.log(selectedContent);
-    setSelectedContent(3);
-    console.log(selectedContent);
-  }
+  // function selectPokemonContent() {
+  //   setSelectedContent(3);
+  // }
 
   // const api = setup({
   //   baseURL: "https://pokeapi.co/api/v2/",
@@ -59,9 +56,11 @@ function App() {
   // console.log('teste');
 
   return (
-    <div>
-      <Menu selectedContent= {selectedContent} selectHomeContent={selectHomeContent} selectPokedexContent={selectPokedexContent} selectAboutContent={selectAboutContent} />
-      <Content selectedContent={selectedContent} selectPokemonContent={selectPokemonContent} />
+    <div className="App">
+      <Provider store={store}>
+        <Menu />
+        <Content />
+      </Provider>
     </div>
   );
 }
