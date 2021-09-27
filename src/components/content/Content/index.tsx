@@ -6,6 +6,7 @@ import { PokedexContent } from '../PokédexContent';
 import { PokemonContent } from '../PokémonContent';
 import './styles.css';
 import { connect } from 'react-redux';
+import { RootState } from '../../../store/reducers';
 
 const Content = ({ selectedContent }: { selectedContent: number }) => {
 
@@ -43,6 +44,10 @@ const Content = ({ selectedContent }: { selectedContent: number }) => {
 
 };
 
-export default connect((state: { selectedContent: number }) => ({ selectedContent: state.selectedContent }))(Content);
+const mapStateToProps = (state: RootState) => ({
+  selectedContent: state.navigation.selectedContent
+});
+
+export default connect(mapStateToProps)(Content);
 
 
