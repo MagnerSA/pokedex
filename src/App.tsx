@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 import Content from './components/content/Content';
 import Menu from './components/menu/Menu';
+import configureStore from './store';
 
 // import { Content } from './components/content/Content';
 // import { Menu } from './components/menu/Menu/index';
 
 
-
-import store from './store';
 import './styles.css';
+
+const store = configureStore();
 
 
 function App() {

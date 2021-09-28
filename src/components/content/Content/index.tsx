@@ -1,7 +1,7 @@
 // @flow 
 import * as React from 'react';
 import { AboutContent } from '../AboutContent';
-import { HomeContent } from '../HomeContent';
+import HomeContent from '../HomeContent';
 import { PokedexContent } from '../PokédexContent';
 import { PokemonContent } from '../PokémonContent';
 import './styles.css';
