@@ -25,10 +25,10 @@ const HomeContent = ({ loading, errorMessage, pokemons, loadPokemonsAsync }: { l
 
   return (
     <div>
-      <h1>TESTE</h1>
+      {/* <h1>TESTE</h1>
       {loading && <h3>CARREGANDO</h3>}
       {errorMessage && <h3>ERRO</h3>}
-      {pokemons && pokemons.map((p: any) => <h3 key={p.name}>{p.name}</h3>)}
+      {pokemons && pokemons.map((p: any) => <h3 key={p.name}>{p.name}</h3>)} */}
 
       {/* {pokemons && pokemons.map((p:any) => <h5 key={p.id}>{p}</h5>)} */}
     </div>
