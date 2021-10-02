@@ -3,20 +3,27 @@ import { connect } from 'react-redux';
 
 import { RootState } from '../../../store/reducers';
 import { MenuButton } from '../MenuButton';
+import { navigateDispatch } from '../../../store/actions/navigation'
 import './styles.css';
 
-import * as NavigationActions from '../../../store/actions/navigation'
-import { Dispatch } from 'redux';
+// import * as NavigationActions from '../../../store/actions/navigation'
+// import { Dispatch } from 'redux';
 
-const Menu = ({ selectedContent, toggleButton }: { selectedContent: number, toggleButton: (selectedContent: number) => {} }) => {
+
+type Props = {
+  selectedContent: number,
+  navigateDispatch: any,
+}
+
+const Menu = (props: Props) => {
   return (
     <div className="menu">
       <br />
-      <MenuButton isActive={selectedContent === 0} onClick={() => { toggleButton(0) }}>HOME</MenuButton>
+      <MenuButton isActive={props.selectedContent === 0} onClick={() => { props.navigateDispatch(0) }}>HOME</MenuButton>
       <br />
-      <MenuButton isActive={selectedContent === 1 || selectedContent === 3} onClick={() => { toggleButton(1) }}>POKÉDEX</MenuButton>
+      <MenuButton isActive={props.selectedContent === 1 || props.selectedContent === 3} onClick={() => { props.navigateDispatch(1) }}>POKÉDEX</MenuButton>
       <br />
-      <MenuButton isActive={selectedContent === 2} onClick={() => { toggleButton(2) }}>ABOUT</MenuButton>
+      <MenuButton isActive={props.selectedContent === 2} onClick={() => { props.navigateDispatch(2) }}>ABOUT</MenuButton>
     </div>
   );
 };
@@ -25,8 +32,8 @@ const mapStateToProps = (state: RootState) => ({
   selectedContent: state.navigation.selectedContent
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  toggleButton: (selectedContent: number) => dispatch(NavigationActions.toggleButton({ selectedContent }))
-});
+const mapDispatchToProps = {
+  navigateDispatch,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);

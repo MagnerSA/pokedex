@@ -6,7 +6,6 @@ const INITIAL_STATE = {
 };
 
 const pokedexReducer = (state = INITIAL_STATE, action: AnyAction) => {
-  console.log("PASSOU AQUI");
 
   if (action.type === UPDATE_POKEDEX_FILTER) {
     return {
