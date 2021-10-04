@@ -1,73 +1,47 @@
 // @flow 
-import * as React from 'react';
-import { connect, useDispatch } from 'react-redux';
-import { loadPokemonsAsync } from '../../../store/actions/pokemonsThunk';
+import { connect } from 'react-redux';
 import { RootState } from '../../../store/reducers';
+import { DefaultButton } from '../../buttons/DefaultButton';
+import { navigateDispatch } from '../../../store/actions/navigation';
+
 import './styles.css';
 
+type Props = {
+  navigateDispatch: any,
+};
 
 
+const HomeContent = (props: Props) => {
 
-const HomeContent = ({ loading, errorMessage, pokemons, loadPokemonsAsync }: { loading: boolean, errorMessage: string, pokemons: any, loadPokemonsAsync: any }) => {
-
-  // const dispatch = useDispatch();
-
-
-  React.useEffect(() => {
-    loadPokemonsAsync();
-  }, []);
-  // console.log("POKEMONS:")
-  // console.log(pokemons);
-  // console.log("CARREGANDO:")
-  // console.log(loading);
-  // console.log("ERRO:")
-  // console.log(errorMessage);
+  const text = `Aqui você vai poder conhecer 
+  um pouco mais sobre os seus Pokémons favoritos.\nE aí, está preparado para conhecer
+  centenas de criaturas fantásticas?`;
 
   return (
-    <div>
-      {/* <h1>TESTE</h1>
-      {loading && <h3>CARREGANDO</h3>}
-      {errorMessage && <h3>ERRO</h3>}
-      {pokemons && pokemons.map((p: any) => <h3 key={p.name}>{p.name}</h3>)} */}
+    <div className="HomeContent">
+      <div className="welcome">SEJA BEM VINDO</div>
+      <div className="textContainer">
+        <p className="text">{text}</p>
 
-      {/* {pokemons && pokemons.map((p:any) => <h5 key={p.id}>{p}</h5>)} */}
+      </div>
+      <div className="pokedexButton">
+        <DefaultButton onClick={() => { props.navigateDispatch(1) }}>QUERO CONHECÊ-LOS</DefaultButton>
+      </div>
+      <div className="imageContainer">
+        <img className="image" alt="" src="https://cdn2.bulbagarden.net/upload/c/c7/Spr_Masters_Oak.png" />
+      </div>
     </div>
   );
-
-
-
-
 };
 
 const mapStateToProps = (state: RootState) => ({
-  pokemons: state.pokemons.pokemons,
-  loading: state.pokemons.loading,
-  errorMessage: state.pokemons.error
+
 });
 
 
 const mapDispatchToProps = {
-  loadPokemonsAsync,
+  navigateDispatch,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContent);
 
-
-  // props.loadPokemons();
-
-  // if (this.props.loading) {
-  //   console.log("CARREGANDO")
-  // }
-
-  // return (
-  //   // console.log(this.props.data);
-
-  //   <div className="homeContent">
-  //     <button onClick={() => {
-  //       console.log("TESTE");
-  //       loadPokemons();
-  //       console.log(this.props);
-
-  //     }}>A</button>
-  //   </div>
-  // );

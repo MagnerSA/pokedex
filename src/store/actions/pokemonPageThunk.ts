@@ -5,14 +5,7 @@ import { loadPokemonDataError, loadPokemonDataStart, loadPokemonDataSuccess } fr
 export const loadPokemonDataAsync = (pokemonName: string) => (dispatch: Dispatch) => {
 
   dispatch(loadPokemonDataStart());
-
-  console.log("pokemonName");
-  console.log(pokemonName);
-
-  pokemonsService.getPokemonData(pokemonName).then(
-    (response: any) => console.log(response.data)
-  )
-
+  
   pokemonsService.getPokemonData(pokemonName).then(
     (response: any) => dispatch(loadPokemonDataSuccess(response.data))
   ).catch(

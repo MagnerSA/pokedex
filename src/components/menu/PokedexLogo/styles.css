@@ -1,0 +1,14 @@
+.logo {
+  
+  height: 50px;
+  width: 15vw;
+  text-align: center;
+
+  position: relative;
+  top: 20px;
+}
+
+.image {
+  height: 45px;
+  color: red;
+}

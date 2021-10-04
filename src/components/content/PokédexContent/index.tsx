@@ -5,12 +5,13 @@ import { Dispatch } from 'redux';
 import { loadPokemonsAsync } from '../../../store/actions/pokemonsThunk';
 import { updatePokemonFilterDispatch } from '../../../store/actions/pokedex';
 import { navigateDispatch } from '../../../store/actions/navigation'
-import { selectCurrentPokemonDispatch } from '../../../store/actions/pokemonPageActions'
+import { selectCurrentPokemonDispatch, clearPokemonDataDispatch } from '../../../store/actions/pokemonPageActions'
 
 import { RootState } from '../../../store/reducers';
 import * as PokedexActions from '../../../store/actions/pokedex'
 
 import './styles.css';
+import formatName from '../../../util/nameFormatter';
 
 type Props = {
   loading: boolean,
@@ -21,6 +22,7 @@ type Props = {
   updatePokemonFilterDispatch: any,
   navigateDispatch: any,
   selectCurrentPokemonDispatch: any,
+  clearPokemonDataDispatch: any,
 }
 
 // const PokedexContent = ({ loading, errorMessage, pokemons, loadPokemonsAsync, updatePokedexFilter, }: { loading: boolean, errorMessage: string, pokemons: any, loadPokemonsAsync: any, updatePokedexFilter: any }) => {
@@ -33,27 +35,36 @@ const PokedexContent = (props: Props) => {
   }
 
   React.useEffect(() => {
-    loadPokemonsAsync();
+    props.loadPokemonsAsync();
   }, []);
 
   return (
-    <div className="pokedexContent">
-      <h1>TESTE</h1>
-      <input type='text' id='filter' onChange={() => { handleChange(); }}></input>
-      {props.loading && <h3>CARREGANDO</h3>}
-      {props.errorMessage && <h3>ERRO</h3>}
-      {props.pokemons && props.pokemons.map((p: any) => {
-        if (p.name.toLowerCase().includes(props.pokedexFilter)) {
-          return (
-            <button key={p.name} onClick={() => {
-              props.selectCurrentPokemonDispatch(p.name);
+    <div className="PokedexContent">
+      <div className='textFieldContainer'>
+        <input className='textField' type='text' id='filter' autoComplete='off' placeholder="DIGITE O NOME DO POKÉMON" onChange={() => { handleChange(); }}></input>
+      </div>
+      {/* {props.loading && <h3>CARREGANDO</h3>}
+      {props.errorMessage && <h3>ERRO</h3>} */}
+      <div className="listContainer">
+        {props.pokemons && props.pokemons.map((p: any) => {
+          if (p.name.toLowerCase().includes(props.pokedexFilter)) {
+            return (
+              <button key={p.name} onClick={() => {
 
-              props.navigateDispatch(3);
-            }}>{p.name}</button>
-          )
-        }
-        return <></>;
-      })}
+                props.clearPokemonDataDispatch();
+
+                props.updatePokemonFilterDispatch('');
+
+                props.selectCurrentPokemonDispatch(p.name);
+
+                props.navigateDispatch(3);
+              }}>{formatName(p.name)}</button>
+            )
+          }
+          return <></>;
+        })}
+      </div>
+
 
     </div >
   );
@@ -69,6 +80,7 @@ const mapStateToProps = (state: RootState) => ({
 
 
 const mapDispatchToProps = {
+  clearPokemonDataDispatch,
   loadPokemonsAsync,
   updatePokemonFilterDispatch,
   navigateDispatch,
