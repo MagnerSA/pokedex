@@ -1,39 +1,47 @@
-// @flow 
 import { connect } from 'react-redux';
 
-import { RootState } from '../../../store/reducers';
+import { RootState } from '../../../store/reducers/rootReducer';
+import { navigateDispatch, PAGES } from '../../../store/actions/navigationActions'
+
 import { MenuButton } from '../MenuButton';
-import { navigateDispatch } from '../../../store/actions/navigation'
-import './styles.css';
 import { PokedexLogo } from '../PokedexLogo';
 
-// import * as NavigationActions from '../../../store/actions/navigation'
-// import { Dispatch } from 'redux';
-
+import './styles.css';
 
 type Props = {
   selectedContent: number,
-  navigateDispatch: any,
+  navigateDispatch: Function,
 }
 
 const Menu = (props: Props) => {
+
+  var isHomeButtonActive = props.selectedContent === PAGES.HOME_PAGE;
+  var isPokedexButtonActive = props.selectedContent === PAGES.POKEDEX_PAGE || props.selectedContent === PAGES.POKEMON_PAGE;
+  var isAboutButtonActive = props.selectedContent === PAGES.ABOUT_PAGE;
+
   return (
-    <div className="menu">
+    <div className="Menu">
 
       <PokedexLogo className="logo" />
-      <br />
-      <br />
-      <MenuButton isActive={props.selectedContent === 0} onClick={() => { props.navigateDispatch(0) }}>{"INÍCIO"}</MenuButton>
-      <br />
-      <MenuButton isActive={props.selectedContent === 1 || props.selectedContent === 3} onClick={() => { props.navigateDispatch(1) }}>{"POKÉDEX"}</MenuButton>
-      <br />
-      <MenuButton isActive={props.selectedContent === 2} onClick={() => { props.navigateDispatch(2) }}>{"SOBRE"}</MenuButton>
+
+      <MenuButton className="homeButton" isActive={isHomeButtonActive} onClick={() => {
+        props.navigateDispatch(PAGES.HOME_PAGE);
+      }}>{"INÍCIO"}</MenuButton>
+
+      <MenuButton className = "pokedexButton" isActive={isPokedexButtonActive} onClick={() => {
+        props.navigateDispatch(PAGES.POKEDEX_PAGE);
+      }}>{"POKÉDEX"}</MenuButton>
+
+      <MenuButton className="aboutButton" isActive={isAboutButtonActive} onClick={() => {
+        props.navigateDispatch(PAGES.ABOUT_PAGE);
+      }}>{"SOBRE"}</MenuButton>
+
     </div>
   );
 };
 
 const mapStateToProps = (state: RootState) => ({
-  selectedContent: state.navigation.selectedContent
+  selectedContent: state.navigationReducer.selectedContent
 });
 
 const mapDispatchToProps = {

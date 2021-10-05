@@ -1,14 +1,15 @@
-// @flow 
-import * as React from 'react';
 import './styles.css';
 
 type Props = {
+  className?: string;
   children: string;
-  onClick: () => void,
+  onClick: Function;
   isActive: boolean;
 };
 export const MenuButton = (props: Props) => {
   return (
-    <button className={props.isActive ? "buttonActive" : "button"} onClick={props.onClick}>{props.children}</button>
+    <div className={props.className}>
+      <button className={props.isActive ? "buttonActive" : "button"} onClick={() => { props.onClick(); }}>{props.children}</button>
+    </div>
   );
 };

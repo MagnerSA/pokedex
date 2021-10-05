@@ -1,0 +1,28 @@
+.pokemonButton button {
+  background-color: #86bae6;
+  float: left;
+
+  color: white;
+  font-weight: 700;
+
+  width: 17vw;
+  height: 5vh;
+
+  margin: 0.5vw;
+  border-radius: 10px;
+
+  border: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.pokemonButton button:hover {
+  background-color: #72a5d1;
+}
+
+.pokemonButton button:active {
+  background-color: #6394c0;
+} 

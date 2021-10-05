@@ -1,4 +1,4 @@
-.menu {
+.Menu {
   background-color: #cc4646;
   width: 15vw;
   height: 100vh;
@@ -6,3 +6,15 @@
   float: left;
 }
 
+.Menu .homeButton {
+  position: relative;
+  top: 20px;
+}
+.Menu .pokedexButton {
+  position: relative;
+  top: 20px;
+}
+.Menu .aboutButton {
+  position: relative;
+  top: 20px;
+}

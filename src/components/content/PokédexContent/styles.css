@@ -16,24 +16,9 @@
   height: 80vh;
 
   background-color: white;
-  border-radius: 25px;
+  border-radius: 15px;
   overflow:hidden;
   overflow-y:scroll;
-}
-
-.PokedexContent .listContainer button {
-  width: 17vw;
-  margin: 0.5vw;
-  height: 4vh;
-  border: none;
-  border-radius: 50px;
-  background-color: #57bee7;
-  color: white;
-}
-
-.PokedexContent .listContainer button:hover {
-  /* background-color: #000000bb; */
-
 }
 
 .PokedexContent .listContainer::-webkit-scrollbar {
@@ -50,22 +35,3 @@
   left: 15vw;
 }
 
-.PokedexContent .textField {
-  background-color: white;
-
-
-  text-align: center;
-
-  border: none;
-  color: rgb(53, 53, 53);
-
-
-  height: 6vh;
-  width: 39.5vw;
-
-  border-radius: 50px;
-
-  font-size: 1.2rem;
-
-
-}

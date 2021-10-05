@@ -6,44 +6,43 @@
   left: 15vw;
 }
 
-.main {
-  height: 400px;
-  width: 700px;
+.chartLabel {
+  position: fixed;
+
+  top: 2vh;
+  left: 17vw;
 }
 
 .chart {
-  position: fixed;
-  top: 2vh;
-  left: 16vw;
-  height: 76vh;
-  width: 42.5vw;
   background-color: rgba(0, 0, 0, 0.158);
-  border-radius: 25px;
-  padding-top: 13vh;
 
-}
+  position: fixed;
+  top: 10vh;
+  left: 17vw;
 
-.pokemonName {
-  background-color: rgb(191, 221, 241);
-  color: white;
-  text-align: center;
-
-  height: 8vh;
+  height: 54vh;
   width: 39.5vw;
 
-  position: fixed;
-  top: 2vh;
-  right: 1vw;
-  border-radius: 50px;
-
-
-  font-size: 1.5rem;
-  padding-top: 2.5vh;
-
+  border-radius: 15px;
+  padding-top: 11vh;
 
 }
 
-.pokemonImage {
+.emptyLabel{
+  position: fixed;
+  top: 2vh;
+  left: 17vw;
+
+  top: 66vh;
+}
+
+.nameLabel {
+  position: fixed;
+  top: 2vh;
+  right: 2vw;
+}
+
+.PokemonContent .pokemonImage {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,13 +50,13 @@
   background-color: rgb(255, 255, 255);
   background-color: rgba(0, 0, 0, 0.158);
 
-  height: 56vh;
+  height: 54vh;
   width: 39.5vw;
 
   position: fixed;
-  top: 12vh;
-  right: 1vw;
-  border-radius: 25px;
+  top: 10vh;
+  right: 2vw;
+  border-radius: 15px;
 }
 
 .PokemonContent .image {
@@ -65,65 +64,43 @@
   max-height: 30vw;
 }
 
-.pokemonType {
-  background-color: rgb(191, 221, 241);
-  color: white;
-
-  text-align: center;
-
-  height: 8vh;
-  width: 39.5vw;
-
+.pokemonTypeLabel {
   position: fixed;
-  top: 70vh;
-  right: 1vw;
-
-  border-radius: 50px;
-
-  font-size: 1.5rem;
-  padding-top: 2.5vh;
+  top: 66vh;
+  right: 2vw;
 }
 
-.pokemonType1 {
-  background-color: rgb(191, 221, 241);
-  color: white;
-
-  text-align: center;
-
-  height: 8vh;
-  width: 19.25vw;
-
+.pokemonType1Label {
   position: fixed;
-  top: 70vh;
-  right: 21.25vw;
-
-  border-radius: 50px;
-
-  font-size: 1.5rem;
-  padding-top: 2.5vh;
+  top: 66vh;
+  right: 22.75vw;
+}
+.pokemonType2Label {
+  position: fixed;
+  top: 66vh;
+  right: 2vw;
 }
 
-.pokemonType2 {
-  background-color: rgb(191, 221, 241);
-  color: white;
-
-  text-align: center;
-
-  height: 8vh;
-  width: 19.25vw;
+.PokemonContent .pokedexButtonContainer {
+  height: 26vh;
+  width: 85vw;
 
   position: fixed;
-  top: 70vh;
-  right: 1vw;
+  bottom: 0;
 
-  border-radius: 50px;
-
-  font-size: 1.5rem;
-  padding-top: 2.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.PokemonContent .pokedexButton {
+.PokemonContent .nextButton {
   position: fixed;
-  top: 84vh;
-  left: 38vw;
+  right: 2vw;
+
+}
+
+.PokemonContent .previousButton {
+  position: fixed;
+  left: 17vw;
+
 }

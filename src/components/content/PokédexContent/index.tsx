@@ -2,16 +2,18 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { loadPokemonsAsync } from '../../../store/actions/pokemonsThunk';
-import { updatePokemonFilterDispatch } from '../../../store/actions/pokedex';
-import { navigateDispatch } from '../../../store/actions/navigation'
+import { loadPokemonsAsync } from '../../../store/actions/pokedexPageThunk';
+import { updatePokemonFilterDispatch } from '../../../store/actions/pokedexPageActions';
+import { navigateDispatch, PAGES } from '../../../store/actions/navigationActions'
 import { selectCurrentPokemonDispatch, clearPokemonDataDispatch } from '../../../store/actions/pokemonPageActions'
 
-import { RootState } from '../../../store/reducers';
-import * as PokedexActions from '../../../store/actions/pokedex'
+import { RootState } from '../../../store/reducers/rootReducer';
+import * as PokedexActions from '../../../store/actions/pokedexPageActions'
 
 import './styles.css';
 import formatName from '../../../util/nameFormatter';
+import { DefaultTextField } from '../../DefaultTextField';
+import { PokemonButton } from '../../PokemonButton';
 
 type Props = {
   loading: boolean,
@@ -34,46 +36,51 @@ const PokedexContent = (props: Props) => {
     props.updatePokemonFilterDispatch(input);
   }
 
+  function navigateToPokemonPage(pokemon: any) {
+
+    props.clearPokemonDataDispatch();
+
+    props.updatePokemonFilterDispatch('');
+
+    props.selectCurrentPokemonDispatch(pokemon.name);
+
+    props.navigateDispatch(PAGES.POKEMON_PAGE);
+
+  }
+
   React.useEffect(() => {
     props.loadPokemonsAsync();
   }, []);
 
   return (
     <div className="PokedexContent">
+
       <div className='textFieldContainer'>
-        <input className='textField' type='text' id='filter' autoComplete='off' placeholder="DIGITE O NOME DO POKÉMON" onChange={() => { handleChange(); }}></input>
+        <DefaultTextField className='textField' type='text' id='filter' autoComplete='off' placeholder="DIGITE O NOME DO POKÉMON" onChange={() => { handleChange(); }}></DefaultTextField>
       </div>
-      {/* {props.loading && <h3>CARREGANDO</h3>}
-      {props.errorMessage && <h3>ERRO</h3>} */}
+
       <div className="listContainer">
-        {props.pokemons && props.pokemons.map((p: any) => {
-          if (p.name.toLowerCase().includes(props.pokedexFilter)) {
+        {props.pokemons && props.pokemons.map((pokemon: any) => {
+
+          const searchFilter: boolean = pokemon.name.toLowerCase().includes(props.pokedexFilter.toLowerCase());
+
+          if (searchFilter) {
             return (
-              <button key={p.name} onClick={() => {
-
-                props.clearPokemonDataDispatch();
-
-                props.updatePokemonFilterDispatch('');
-
-                props.selectCurrentPokemonDispatch(p.name);
-
-                props.navigateDispatch(3);
-              }}>{formatName(p.name)}</button>
+              <PokemonButton key={pokemon.name} pokemon={pokemon} onClick={() => { navigateToPokemonPage(pokemon); }} />
             )
           }
           return <></>;
         })}
       </div>
 
-
     </div >
   );
 };
 
 const mapStateToProps = (state: RootState) => ({
-  pokemons: state.pokemons.pokemons,
-  loading: state.pokemons.loading,
-  errorMessage: state.pokemons.error,
+  pokemons: state.pokedexReducer.pokemons,
+  loading: state.pokedexReducer.loading,
+  errorMessage: state.pokedexReducer.error,
   pokedexFilter: state.pokedexReducer.pokedexFilter,
 
 });

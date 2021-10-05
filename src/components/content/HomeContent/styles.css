@@ -5,70 +5,27 @@
   left: 15vw;
 }
 
-.HomeContent .welcome {
-  background-color: rgb(154, 199, 230);
-  color: white;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 6vh;
-  width: 39.5vw;
-
+.HomeContent .welcomeLabel {
   position: fixed;
   top: 8vh;
-  left: 20vw;
-
-  border-radius: 50px;
-
-  font-size: 1.5rem;
-
+  left: 25vw;
 }
 
-.HomeContent .textContainer {
-  background-color: rgb(154, 199, 230);
-  color: white;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 1.5rem;
-
-  text-align: center;
-
-  height: 36vh;
-  width: 39.5vw;
-
+.HomeContent .introText {
   position: fixed;
   top: 16vh;
-  left: 20vw;
-
-  border-radius: 25px;
-
-}
-
-.HomeContent .text {
-  width: 30vw;
+  left: 25vw;
 }
 
 .HomeContent .pokedexButton {
   position: fixed;
-  left: 20vw;
+  left: 25vw;
   top: 60vh;
-
 }
 
-/* .HomeContent .imageContainer{
- background-color: cadetblue;
-} */
-
-.HomeContent .imageContainer .image{
-  position: relative;
-  left: 40vw;
-  top: 5vh;
-
-  height: 60vh;
-  max-height: 60vw;
+.HomeContent .image {
+  position: fixed;
+  left: 50vw;
+  top: 6vh;
+  height: 65vh;
 }

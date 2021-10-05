@@ -1,15 +1,22 @@
 import { AnyAction } from 'redux';
-import { LOAD_POKEMONS_ERROR, LOAD_POKEMONS_LOADING, LOAD_POKEMONS_SUCCESS } from '../actions/pokemons';
+import { LOAD_POKEMONS_ERROR, LOAD_POKEMONS_LOADING, LOAD_POKEMONS_SUCCESS, UPDATE_POKEDEX_FILTER } from '../actions/pokedexPageActions';
 
 const INITIAL_STATE = {
+  pokedexFilter: '',
   pokemons: null,
   loading: false,
   error: null,
 };
 
-const pokemonsReducer = (state = INITIAL_STATE, action: AnyAction) => {
+const pokedexReducer = (state = INITIAL_STATE, action: AnyAction) => {
 
   switch (action.type) {
+    case UPDATE_POKEDEX_FILTER: {
+      return {
+        ...state,
+        pokedexFilter: action.newFilter,
+      };
+    }
     case LOAD_POKEMONS_LOADING: {
       return {
         ...state,
@@ -41,4 +48,4 @@ const pokemonsReducer = (state = INITIAL_STATE, action: AnyAction) => {
 
 }
 
-export default pokemonsReducer;
+export default pokedexReducer;

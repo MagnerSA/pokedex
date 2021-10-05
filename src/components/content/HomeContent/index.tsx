@@ -1,43 +1,43 @@
-// @flow 
 import { connect } from 'react-redux';
-import { RootState } from '../../../store/reducers';
-import { DefaultButton } from '../../buttons/DefaultButton';
-import { navigateDispatch } from '../../../store/actions/navigation';
+
+import { RootState } from '../../../store/reducers/rootReducer';
+import { navigateDispatch, PAGES } from '../../../store/actions/navigationActions';
+
+import { DefaultButton } from '../../DefaultButton';
 
 import './styles.css';
+import { DefaultLabel } from '../../DefaultLabel';
+import { DefaultTextLabel } from '../../DefaultTextLabel';
+import { DefaultImage } from '../../DefaultImage';
 
 type Props = {
-  navigateDispatch: any,
+  navigateDispatch: Function,
 };
-
 
 const HomeContent = (props: Props) => {
 
-  const text = `Aqui você vai poder conhecer 
-  um pouco mais sobre os seus Pokémons favoritos.\nE aí, está preparado para conhecer
+  const introText = `Aqui você vai poder conhecer 
+  um pouco mais sobre os seus Pokémon favoritos. E aí, está preparado para conhecer
   centenas de criaturas fantásticas?`;
 
   return (
     <div className="HomeContent">
-      <div className="welcome">SEJA BEM VINDO</div>
-      <div className="textContainer">
-        <p className="text">{text}</p>
 
-      </div>
-      <div className="pokedexButton">
-        <DefaultButton onClick={() => { props.navigateDispatch(1) }}>QUERO CONHECÊ-LOS</DefaultButton>
-      </div>
-      <div className="imageContainer">
-        <img className="image" alt="" src="https://cdn2.bulbagarden.net/upload/c/c7/Spr_Masters_Oak.png" />
-      </div>
+      <DefaultLabel className="welcomeLabel">SEJA BEM VINDO</DefaultLabel>
+
+      <DefaultTextLabel className="introText">{introText}</DefaultTextLabel>
+
+      <DefaultButton className="pokedexButton" onClick={
+        () => { props.navigateDispatch(PAGES.POKEDEX_PAGE); }
+      }>QUERO CONHECÊ-LOS</DefaultButton>
+
+      <img className="image" alt="" src="https://cdn2.bulbagarden.net/upload/c/c7/Spr_Masters_Oak.png"></img>
+
     </div>
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-
-});
-
+const mapStateToProps = (state: RootState) => ({});
 
 const mapDispatchToProps = {
   navigateDispatch,

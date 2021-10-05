@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import pokemonsService from "../../services/pokemonsService";
-import { loadPokemonsError, loadPokemonsStart, loadPokemonsSuccess } from "./pokemons";
+import { loadPokemonsError, loadPokemonsStart, loadPokemonsSuccess } from "./pokedexPageActions";
 
 export const loadPokemonsAsync = () => (dispatch: Dispatch) => {
 
@@ -11,5 +11,4 @@ export const loadPokemonsAsync = () => (dispatch: Dispatch) => {
   ).catch(
     (error) => dispatch(loadPokemonsError(error.message))
   );
-
 };

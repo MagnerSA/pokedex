@@ -1,11 +1,15 @@
 import api from "./api";
 
+const numberOfPokemons = 898;
+
 class PokemonsService {
+
   getAllPokemons = () => {
-    return api.get('pokemon?limit=898');
+    return api.get(`pokemon?limit=${numberOfPokemons}`);
   };
-  getPokemonData = (pokemonName: string) => {
-    return api.get(`pokemon/${pokemonName}`);
+
+  getPokemonData = (pokemonID: string) => {
+    return api.get(`pokemon/${pokemonID}`);
   };
 }
 

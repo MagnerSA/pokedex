@@ -1,0 +1,17 @@
+
+.defaultTextField {
+  background-color: white;
+
+  text-align: center;
+
+  border: none;
+  color: #353535;
+
+  height: 6vh;
+  width: 39.5vw;
+
+  border-radius: 15px;
+
+  font-size: 1.2rem;
+
+}

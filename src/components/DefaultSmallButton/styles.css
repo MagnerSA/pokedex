@@ -1,0 +1,26 @@
+.defaultSmallButton {
+  background-color: #86bae6;
+  color: white;
+
+  height: 6vh;
+  width: 16vw;
+
+  border-radius: 15px;
+  border: none;
+
+  font-size: 1rem;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.defaultSmallButton button:hover {
+  background-color: #00000020;
+}
+
+.defaultSmallButton button:active {
+  background-color: #00000030;
+} 

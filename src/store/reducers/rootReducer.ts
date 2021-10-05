@@ -1,13 +1,11 @@
 import { combineReducers } from "redux";
 
-import navigation from "./navigation";
-import pokedexReducer from "./pokedexReducer";
+import navigationReducer from "./navigationReducer";
+import pokedexReducer from "./pokedexPageReducer";
 import pokemonPageReducer from "./pokemonPageReducer";
-import pokemons from "./pokemonsReducer";
 
 export const rootReducer = combineReducers({
-  navigation,
-  pokemons,
+  navigationReducer,
   pokedexReducer,
   pokemonPageReducer,
 });

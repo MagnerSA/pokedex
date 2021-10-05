@@ -1,0 +1,18 @@
+
+.defaultLabel {
+  background-color: #86bae6;
+  color: white;
+
+  font-size: 1.3rem;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 6vh;
+  width: 39.5vw;
+
+  border-radius: 15px;
+
+}

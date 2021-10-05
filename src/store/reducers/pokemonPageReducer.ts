@@ -2,7 +2,7 @@ import { AnyAction } from 'redux';
 import { CLEAR_POKEMON_DATA, LOAD_POKEMON_DATA_ERROR, LOAD_POKEMON_DATA_START, LOAD_POKEMON_DATA_SUCCESS, SELECT_CURRENT_POKEMON } from '../actions/pokemonPageActions';
 
 const INITIAL_STATE = {
-  currentPokemonName: '',
+  currentPokemonID: '',
   loading: false,
   error: null,
   pokemonData: null,
@@ -14,14 +14,14 @@ const pokemonPageReducer = (state = INITIAL_STATE, action: AnyAction) => {
     case SELECT_CURRENT_POKEMON: {
       return {
         ...state,
-        currentPokemonName: action.newPokemonName,
+        currentPokemonID: action.newPokemonID,
       };
     }
 
     case CLEAR_POKEMON_DATA: {
       return {
         ...state,
-        currentPokemonName: '',
+        currentPokemonID: '',
         pokemonData: null,
       };
     }

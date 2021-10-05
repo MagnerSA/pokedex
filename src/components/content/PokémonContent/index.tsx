@@ -1,17 +1,20 @@
 // @flow 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { RootState } from '../../../store/reducers';
+import { RootState } from '../../../store/reducers/rootReducer';
 import { loadPokemonDataAsync } from '../../../store/actions/pokemonPageThunk';
-import { navigateDispatch } from '../../../store/actions/navigation';
+import { navigateDispatch, PAGES } from '../../../store/actions/navigationActions';
 import ReactECharts from 'echarts-for-react';
 import CSS from 'csstype';
 
 import './styles.css';
 import formatName from '../../../util/nameFormatter';
-import { DefaultButton } from '../../buttons/DefaultButton';
+import { DefaultButton } from '../../DefaultButton';
 import { colorMap, baseTheme, backgroundColorMap } from './colorMaps';
-
+import { selectCurrentPokemonDispatch } from '../../../store/actions/pokemonPageActions';
+import { DefaultLabel } from '../../DefaultLabel';
+import { DefaultSmallLabel } from '../../DefaultSmallLabel';
+import { DefaultSmallButton } from '../../DefaultSmallButton';
 
 type Props = {
   currentPokemonName: string,
@@ -20,9 +23,23 @@ type Props = {
   loading: boolean,
   errorMessage: string,
   navigateDispatch: any,
+  selectCurrentPokemonDispatch: any,
 };
 
 const PokemonContent = (props: Props) => {
+
+  function navigateToPreviousPokemon() {
+
+    if (props.pokemonData.id > 1) props.selectCurrentPokemonDispatch((props.pokemonData.id - 1).toString());
+
+  }
+
+  function navigateToNextPokemon() {
+
+    if (props.pokemonData.id < 898) props.selectCurrentPokemonDispatch((props.pokemonData.id + 1).toString());
+
+  }
+
 
   var hasData = props.pokemonData != null;
 
@@ -33,7 +50,7 @@ const PokemonContent = (props: Props) => {
   var special_defense = hasData ? props.pokemonData.stats[4].base_stat : 0;
   var speed = hasData ? props.pokemonData.stats[5].base_stat : 0;
 
-  var numberOfTypes = 2;
+  var numberOfTypes = 1;
   var type1: string = '';
   var type2: string = '';
 
@@ -59,14 +76,7 @@ const PokemonContent = (props: Props) => {
 
   var option = {
     legend: null,
-    title: {
-      text: 'Atributos do Pokémon',
-      left: 'center',
-      textStyle: {
-        color: hasData ? (baseTheme[type1] === 'dark' ? 'white' : 'black') : 'black'
 
-      }
-    },
     toolbox: {
       show: true,
       feature: {
@@ -109,24 +119,44 @@ const PokemonContent = (props: Props) => {
     props.loadPokemonDataAsync(props.currentPokemonName);
   }, []);
 
+  React.useEffect(() => {
+    props.loadPokemonDataAsync(props.currentPokemonName);
+  }, [props.currentPokemonName]);
+
   return (
 
     <div className="PokemonContent" style={backgroundColor}>
+
+      <DefaultLabel className="chartLabel" style={{ 'backgroundColor': '#00000030' }} >ATRIBUTOS DO POKÉMON</DefaultLabel>
+
       <div className="chart" style={baseThemeColor}><ReactECharts option={option} /></div>
-      <div className="pokemonName" style={themeColor}>{hasData && formatName(props.pokemonData.name)}</div>
+
+      <DefaultLabel className="emptyLabel" style={{ 'backgroundColor': '#00000020' }}></DefaultLabel>
+
+      <DefaultLabel className="nameLabel" style={themeColor} >{hasData && `#${props.pokemonData.id} ${formatName(props.pokemonData.name)}`}</DefaultLabel>
+
       <div className="pokemonImage" style={baseThemeColor} >{hasData && <img className="image" alt="" src={props.pokemonData.sprites.other["official-artwork"].front_default} />}</div>
-      <div className={numberOfTypes === 1 ? "pokemonType" : "pokemonType1"} style={themeColor}>{hasData && formatName(type1)}</div>
-      {numberOfTypes === 2 && <div className="pokemonType2" style={secondTypeColor}>{hasData && formatName(type2)}</div>}
-      <div className="pokedexButton">
-        <DefaultButton onClick={() => { props.navigateDispatch(1) }}>MAIS POKÉMONS</DefaultButton>
+
+      {numberOfTypes === 1 && <DefaultLabel className={"pokemonTypeLabel"} style={themeColor} >{hasData && formatName(type1)}</DefaultLabel>}
+
+      {numberOfTypes === 2 && <DefaultSmallLabel className={"pokemonType1Label"} style={themeColor} >{hasData && formatName(type1)}</DefaultSmallLabel>}
+      {numberOfTypes === 2 && <DefaultSmallLabel className={"pokemonType2Label"} style={secondTypeColor} >{hasData && formatName(type2)}</DefaultSmallLabel>}
+
+      <div className="pokedexButtonContainer">
+        <DefaultSmallButton className="previousButton" onClick={navigateToPreviousPokemon}>ANTERIOR</DefaultSmallButton>
+
+        <DefaultButton className="pokedexButton" onClick={() => { props.navigateDispatch(PAGES.POKEDEX_PAGE) }}>MAIS POKÉMON</DefaultButton>
+
+        <DefaultSmallButton className="nextButton" onClick={navigateToNextPokemon}>PRÓXIMO</DefaultSmallButton>
       </div>
+
 
     </div>
   );
 };
 
 const mapStateToProps = (state: RootState) => ({
-  currentPokemonName: state.pokemonPageReducer.currentPokemonName,
+  currentPokemonName: state.pokemonPageReducer.currentPokemonID,
   pokemonData: state.pokemonPageReducer.pokemonData,
   loading: state.pokemonPageReducer.loading,
   errorMessage: state.pokemonPageReducer.error,
@@ -136,6 +166,7 @@ const mapStateToProps = (state: RootState) => ({
 const mapDispatchToProps = {
   loadPokemonDataAsync,
   navigateDispatch,
+  selectCurrentPokemonDispatch,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonContent);

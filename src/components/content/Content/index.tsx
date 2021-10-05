@@ -1,20 +1,23 @@
-// @flow 
-import * as React from 'react';
+import { connect } from 'react-redux';
+
+import { RootState } from '../../../store/reducers/rootReducer';
+
 import AboutContent from '../AboutContent';
 import HomeContent from '../HomeContent';
 import PokedexContent from '../PokédexContent';
 import PokemonContent from '../PokémonContent';
-import './styles.css';
-import { connect } from 'react-redux';
-import { RootState } from '../../../store/reducers';
 
-const Content = ({ selectedContent }: { selectedContent: number }) => {
+type Props = {
+  selectedContent: number;
+}
+
+const Content = (props: Props) => {
 
   var content = (
     <div></div>
   )
 
-  switch (selectedContent) {
+  switch (props.selectedContent) {
     case 0:
       return (
         <HomeContent />
@@ -45,7 +48,7 @@ const Content = ({ selectedContent }: { selectedContent: number }) => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-  selectedContent: state.navigation.selectedContent
+  selectedContent: state.navigationReducer.selectedContent
 });
 
 export default connect(mapStateToProps)(Content);

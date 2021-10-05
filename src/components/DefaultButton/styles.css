@@ -1,0 +1,26 @@
+.defaultButton {
+  background-color: #df4747;
+  color: white;
+
+  height: 6vh;
+  width: 39.5vw;
+
+  border-radius: 15px;
+  border: none;
+
+  font-size: 1.2rem;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.defaultButton button:hover {
+  background-color: #00000020;
+}
+
+.defaultButton button:active {
+  background-color: #00000030;
+} 
