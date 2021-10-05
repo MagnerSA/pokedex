@@ -16,7 +16,7 @@ type Props = {
 
 const HomeContent = (props: Props) => {
 
-  const introText = `Aqui você vai poder conhecer 
+  const introText = `Aqui você vai poder saber 
   um pouco mais sobre os seus Pokémon favoritos. E aí, está preparado para conhecer
   centenas de criaturas fantásticas?`;
 
