@@ -21,7 +21,7 @@ export const AboutContent = (props: Props) => {
   return (
     <div className="AboutContent">
 
-      <DefaultLabel className="aboutLabel">SEJA BEM VINDO</DefaultLabel>
+      <DefaultLabel className="aboutLabel">SOBRE O APLICATIVO</DefaultLabel>
 
       <DefaultTextLabel className="aboutText">{aboutText}</DefaultTextLabel>
 
